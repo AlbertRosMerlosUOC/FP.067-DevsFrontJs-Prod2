@@ -5,6 +5,8 @@ import { DetailComponent } from '../detail/detail.component';
 import { NotifierService } from 'angular-notifier';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-days',
@@ -18,6 +20,7 @@ export class DaysComponent implements OnInit {
   detalleViaje: any | null = null;
   viajeData: DiaViaje[] | undefined;
   formularioViaje: FormGroup;
+  modalRef: MdbModalRef<ModalComponent> | null = null;
 
   // Añadir ViewChild para obtener referencia a DetailComponent
   @ViewChild(DetailComponent)
@@ -26,7 +29,8 @@ export class DaysComponent implements OnInit {
   constructor(
     private viajeService: ViajeService,
     private notifier: NotifierService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: MdbModalService
   ) {
     this.notifier = notifier;
     this.formularioViaje = this.formBuilder.group({
@@ -75,6 +79,11 @@ export class DaysComponent implements OnInit {
 
   mostrarNotificacion(tipo: string, mensaje: string): void {
     this.notifier.notify(tipo, mensaje);
+  }
+
+  // abrir modalForm
+  openModalForm() {
+    this.modalRef = this.modalService.open(ModalComponent);
   }
 
   eliminarViaje(viaje: any) {
@@ -142,9 +151,7 @@ export class DaysComponent implements OnInit {
     if (this.formularioViaje.valid) {
       const nuevoViaje: DiaViaje = this.formularioViaje.value;
       this.addViaje(nuevoViaje);
-      // Puedes hacer otras acciones después de agregar el viaje si es necesario
     } else {
-      // Manejo de errores o notificaciones si el formulario no es válido
     }
   }
 }

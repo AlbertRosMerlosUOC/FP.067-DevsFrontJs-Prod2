@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formularioViaje" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <br>
+            <!-- Actividades da error (se supone que es array, pero se guarda en la bbdd como string) -->
+            <label for="actividades">Actividades:</label>
+            <input type="text" id="actividades" formControlName="actividades" required>
+            <br>
+            <label for="alojamiento">Alojamiento:</label>
+            <input type="text" id="alojamiento" formControlName="alojamiento" required>
+            <br>
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" formControlName="ciudad" required>
+            <br>
+            <label for="codigo">Código:</label>
+            <input type="text" id="codigo" formControlName="codigo" required>
+            <br>
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" id="descripcion" formControlName="descripcion" required>
+            <br>
+            <label for="dia">Día:</label>
+            <input type="text" id="dia" formControlName="dia" required>
+            <br>
+            <label for="imagen">Imagen:</label>
+            <input type="text" id="imagen" formControlName="imagen" required>
+            <br>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" formControlName="nombre" required>
+            <br>
+            <label for="video">Video:</label>
+            <input type="text" id="video" formControlName="video" required>
+            <!-- Otros campos del formulario -->
+
+            <!-- FormArray for activities // no funciona// -->
+            <!-- <div formArrayName="actividades">
+                <div *ngFor="let actividad of actividades.controls; let i = index">
+                <label [for]="'actividad' + i">Actividad {{ i + 1 }}:</label>
+                <input [id]="'actividad' + i" [formControl]="actividades.at(i)" required>
+                <button type="button" class="btn btn-danger" (click)="eliminarActividad(i)">Eliminar</button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="agregarActividad()">Agregar Actividad</button>
+            <br> -->
+
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+                Close
+            </button>
+            <button type="submit" class="btn btn-primary" (click)="modalRef.close()">Agregar Viaje</button>
+        </div>
+    </form>
+</div>

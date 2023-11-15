@@ -15,6 +15,9 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { ModalComponent } from './modal/modal.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -57,12 +60,19 @@ const customNotifierOptions: NotifierOptions = {
 };
 
 @NgModule({
-  declarations: [AppComponent, DaysComponent, DetailComponent, PlayerComponent],
+  declarations: [
+    AppComponent,
+    DaysComponent,
+    DetailComponent,
+    PlayerComponent,
+    ModalComponent,
+  ],
   imports: [
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MdbModalModule,
     // Creamos la aplicación de Firebase con nuestra configuración
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
